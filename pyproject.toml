@@ -1,0 +1,7 @@
+[project]
+name = "nvidia_fan_control"
+version = "0.0.0"
+dependencies = ["nvidia-ml-py"]
+
+[project.scripts]
+nv-fan-control = "fan_control.__main__:main"
