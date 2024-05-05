@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import time
 import logging
 from pynvml import (
@@ -19,16 +21,11 @@ logging.basicConfig(
     datefmt='%Y-%m-%d %H:%M:%S')
 
 def get_target_fan_speed(temp: int) -> int:
-    if temp < 40:
-        return 0
-    elif temp < 65:
-        return 35
-    elif temp < 70:
-        return 60
-    elif temp < 82:
-        return 90
-    else:
-        return 100
+    map = [(40,0), (65,35), (70, 60), (82, 90)]
+    for temp_boundary, fan_speed in map:
+        if temp < temp_boundary:
+            return fan_speed
+    return 100
 
 log = logging.getLogger(__name__)
 
